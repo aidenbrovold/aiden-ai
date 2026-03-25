@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Intake Form — AI Services</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+        .container { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2em; color: #fff; margin-bottom: 8px; }
+        .header p { color: #94a3b8; font-size: 1.1em; }
+        .form-section { background: #1e293b; border-radius: 12px; padding: 28px; margin-bottom: 24px; border: 1px solid #334155; }
+        .form-section h2 { color: #60a5fa; font-size: 1.2em; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; color: #cbd5e1; font-weight: 500; margin-bottom: 6px; font-size: 0.95em; }
+        .form-group label .required { color: #f87171; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea, select {
+            width: 100%; padding: 12px 14px; background: #0f172a; border: 1px solid #475569;
+            border-radius: 8px; color: #e2e8f0; font-size: 1em; transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #60a5fa; }
+        textarea { resize: vertical; min-height: 80px; }
+        select { cursor: pointer; }
+        .radio-group { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+        .radio-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; color: #cbd5e1; font-weight: 400; }
+        .radio-group input[type="radio"] { accent-color: #60a5fa; }
+        .submit-btn {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none; border-radius: 10px; color: #fff; font-size: 1.15em; font-weight: 600;
+            cursor: pointer; transition: transform 0.1s, box-shadow 0.2s;
+        }
+        .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(59,130,246,0.4); }
+        .submit-btn:active { transform: translateY(0); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .success-msg { text-align: center; padding: 60px 20px; }
+        .success-msg h2 { color: #4ade80; font-size: 1.8em; margin-bottom: 12px; }
+        .success-msg p { color: #94a3b8; font-size: 1.1em; }
+        .hidden { display: none; }
+        .note { color: #64748b; font-size: 0.85em; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Services</h1>
+            <p>Client Intake Form</p>
+        </div>
+
+        <form id="intakeForm">
+            <div class="form-section">
+                <h2>🏢 Business Information</h2>
+                <div class="form-group">
+                    <label>Business Name <span class="required">*</span></label>
+                    <input type="text" name="business_name" required placeholder="e.g., Joe's Pizza">
+                </div>
+                <div class="form-group">
+                    <label>Business Type <span class="required">*</span></label>
+                    <select name="business_type" required>
+                        <option value="">Select...</option>
+                        <option value="Restaurant">Restaurant / Cafe</option>
+                        <option value="Salon/Spa">Salon / Spa</option>
+                        <option value="Auto Shop">Auto Shop / Detailing</option>
+                        <option value="HVAC/Plumbing">HVAC / Plumbing</option>
+                        <option value="Dental/Medical">Dental / Medical</option>
+                        <option value="Fitness/Gym">Fitness / Gym</option>
+                        <option value="Real Estate">Real Estate</option>
+                        <option value="Pet Services">Pet Services</option>
+                        <option value="Cleaning">Cleaning Service</option>
+                        <option value="Landscaping">Landscaping</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Business Address <span class="required">*</span></label>
+                    <input type="text" name="address" required placeholder="123 Main St, Phoenix, AZ 85001">
+                </div>
+                <div class="form-group">
+                    <label>Current Business Phone <span class="required">*</span></label>
+                    <input type="tel" name="current_phone" required placeholder="(480) 555-1234">
+                </div>
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="url" name="website" placeholder="https://www.yourbusiness.com">
+                </div>
+                <div class="form-group">
+                    <label>Google Business Profile URL</label>
+                    <input type="url" name="google_business_url" placeholder="https://g.page/your-business">
+                    <p class="note">We use this to monitor and respond to your reviews</p>
+                </div>
+                <div class="form-group">
+                    <label>Hours of Operation <span class="required">*</span></label>
+                    <textarea name="hours" required placeholder="Mon-Fri: 9am-9pm&#10;Sat: 10am-10pm&#10;Sun: 11am-8pm"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>👤 Owner / Manager Contact</h2>
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="owner_name" required placeholder="John Smith">
+                </div>
+                <div class="form-group">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" name="owner_email" required placeholder="john@business.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone <span class="required">*</span></label>
+                    <input type="tel" name="owner_phone" required placeholder="(480) 555-9999">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>👥 Staff (for alerts & scheduling)</h2>
+                <div class="form-group">
+                    <label>Staff Names, Roles & Phone Numbers</label>
+                    <textarea name="staff_info" rows="4" placeholder="Maria - Manager - (480) 555-1111&#10;James - Host - (602) 555-2222&#10;Sarah - Kitchen Lead - (520) 555-3333"></textarea>
+                    <p class="note">List anyone who should receive shift reminders, alerts, or notifications</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>🤖 AI Customization</h2>
+                <div class="form-group">
+                    <label>How should the AI greet callers?</label>
+                    <input type="text" name="bot_greeting" placeholder="e.g., Thank you for calling Joe's Pizza! How can I help you today?">
+                </div>
+                <div class="form-group">
+                    <label>What's your business's vibe?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="business_vibe" value="Professional"> Professional</label>
+                        <label><input type="radio" name="business_vibe" value="Friendly" checked> Friendly</label>
+                        <label><input type="radio" name="business_vibe" value="Casual"> Casual</label>
+                        <label><input type="radio" name="business_vibe" value="Upscale"> Upscale</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Top 10 Questions Callers Ask</label>
+                    <textarea name="top_questions" rows="5" placeholder="1. What are your hours?&#10;2. Do you take reservations?&#10;3. Is there parking available?&#10;4. Do you have vegetarian options?&#10;5. Can I place a to-go order?"></textarea>
+                    <p class="note">List the most common things callers ask — we'll train the AI on these</p>
+                </div>
+                <div class="form-group">
+                    <label>If the AI can't help, what should it do?</label>
+                    <select name="fallback_action">
+                        <option value="Take a message">Take a message and notify you</option>
+                        <option value="Transfer to owner">Transfer to owner/manager</option>
+                        <option value="Transfer to staff">Transfer to on-duty staff</option>
+                        <option value="Voicemail">Send to voicemail</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>📋 Services / Menu</h2>
+                <div class="form-group">
+                    <label>List your main services or menu categories</label>
+                    <textarea name="services_menu" rows="5" placeholder="Appetizers, Entrees, Desserts, Drinks&#10;OR&#10;Haircuts, Color, Styling, Treatments&#10;OR&#10;AC Repair, Furnace Install, Duct Cleaning"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>📱 Phone & Technical</h2>
+                <div class="form-group">
+                    <label>Current Phone Provider</label>
+                    <input type="text" name="phone_provider" placeholder="e.g., AT&T, Verizon, Google Voice, VoIP">
+                </div>
+                <div class="form-group">
+                    <label>Would you like to port your number or set up call forwarding?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="port_or_forward" value="Forward" checked> Call Forwarding (keep current provider)</label>
+                        <label><input type="radio" name="port_or_forward" value="Port"> Port number to us</label>
+                        <label><input type="radio" name="port_or_forward" value="New number"> Get a new number</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Do you use any existing CRM or booking system?</label>
+                    <input type="text" name="existing_crm" placeholder="e.g., Square, Toast, Mindbody, None">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>📦 Package Selection</h2>
+                <div class="form-group">
+                    <div class="radio-group" style="flex-direction: column; gap: 12px;">
+                        <label style="background: #0f172a; padding: 14px; border-radius: 8px; border: 1px solid #334155;">
+                            <input type="radio" name="package" value="Starter">
+                            <strong>Starter — $297/mo</strong><br>
+                            <span class="note" style="margin-left: 22px;">AI Receptionist + Missed Call Text-Back + Call Logging</span>
+                        </label>
+                        <label style="background: #0f172a; padding: 14px; border-radius: 8px; border: 1px solid #3b82f6;">
+                            <input type="radio" name="package" value="Growth" checked>
+                            <strong>Growth — $497/mo</strong> ⭐ Most Popular<br>
+                            <span class="note" style="margin-
+...(truncated)...
